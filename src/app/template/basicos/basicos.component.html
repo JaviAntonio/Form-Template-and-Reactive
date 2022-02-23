@@ -3,15 +3,23 @@
 
 <div class="row">
     <div class="col">
-        <form>
+        <form (ngSubmit)="guardar()" #myForm="ngForm" >
             <!-- campo de producto -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-7">
                     <input type="text"
+                            required
+                            autocomplete="off"
                             class="form-control"
-                            placeholder="Nombre del producto">
-                            <span class="form-text text-danger">Debe ser de 3 letras</span>
+                            ngModel
+                            name="products"
+                            placeholder="Nombre del producto"
+                            minlength="3">
+                            
+                            <span class="form-text text-danger"
+                                   *ngIf="validacion()">
+                                Debe ser de 3 letras</span>
                 </div>
             </div>
             <!-- campo de precio -->
@@ -19,8 +27,12 @@
                 <label class="col-sm-3 col-form-label">Precio</label>
                 <div class="col-sm-7">
                     <input type="number"
+                            required
                             class="form-control"
-                            placeholder="Precio del producto">
+                            ngModel
+                            name="price"
+                            placeholder="Precio del producto"
+                            min="1">
                 </div>
             </div>
             <!-- campo de existencia -->
@@ -29,6 +41,8 @@
                 <div class="col-sm-7">
                     <input type="number"
                            class="form-control"
+                           ngModel
+                           name="existencias"
                            placeholder="Existencias del producto">
 
                            <button type="submit"
@@ -37,14 +51,6 @@
                            </button>
                 </div>
             </div>
-<!--                 <div class="row">
-                    <div class="col">
-                        <button type="submit"
-                                class="btn btn-primary float-end">
-                            Guardar
-                        </button>
-                    </div>
-                </div> -->
 
         </form>
 
